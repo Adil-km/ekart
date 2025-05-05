@@ -385,10 +385,41 @@ th:last-child{
     padding: 50px 0;
     background: radial-gradient(#fff, #ffd6d6);
 }
+
+
+.error{
+    background-color: #ffe6e6;
+    width: 260px;
+    color: #d8000c;
+    border-left: 4px solid #ff4d4d;
+    padding: 10px 15px;
+    margin: auto auto 10px auto;
+    border-radius: 5px;
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.error li{
+    list-style: none;
+    font-weight: bold;
+}
+
+.error-container{
+    background: #fff;
+    width: 300px;
+    position: relative;
+    text-align: center;
+    padding: 20px 0;
+    margin: auto;
+    z-index: 1;
+    overflow: hidden;
+}
+
 .form-container{
     background: #fff;
     width: 300px;
-    height: 400px;
+    height: 405px;
     position: relative;
     text-align: center;
     padding: 20px 0;
@@ -411,7 +442,7 @@ th:last-child{
     max-width: 300px;
     padding: 0 20px;
     position: absolute;
-    top: 130px;
+    top: 90px;
     transition: transform 1s;
 }
 form input{
