@@ -9,13 +9,14 @@
             {% if messages %}
             <div class="error-container">
 
-                <div class="error">
-                        {% for message in messages %}
-                            <li style="color: red;">{{message}}</li>
-                        {% endfor %}
+                {% for message in messages %}
+                    <div class="{{ message.tags }}">
+                        <li>{{message}}</li>
                     </div>
+                {% endfor %}
             </div>
             {% endif %}
+            
             <div class="form-container">
                 <div class="form-btn">
                     <span onclick="login()">Login</span>

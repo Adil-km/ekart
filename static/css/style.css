@@ -386,11 +386,31 @@ th:last-child{
     background: radial-gradient(#fff, #ffd6d6);
 }
 
+/* message box for error/success */
+/* success*/
+.success{
+    background-color: #d4edda;
+    width: 260px;
+    color:#3cce5e;
+    border-left: 4px solid #7bff97;
+    padding: 10px 15px;
+    margin: auto auto 10px auto;
+    border-radius: 5px;
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
 
+.success li{
+    list-style: none;
+    font-weight: bold;
+}
+
+/* error */
 .error{
     background-color: #ffe6e6;
     width: 260px;
-    color: #d8000c;
+    color:#d8000c ;
     border-left: 4px solid #ff4d4d;
     padding: 10px 15px;
     margin: auto auto 10px auto;
