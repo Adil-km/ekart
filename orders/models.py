@@ -17,7 +17,7 @@ class Order(models.Model):
                      (ORDER_DELIVERED, "ORDER_DELIVERED"),
                      (ORDER_REJECTED, "ORDER_REJECTED"),)
     order_status = models.IntegerField(choices=STATUS_CHOICE, default=CART_STAGE)
-    order = models.ForeignKey(Customer, on_delete=models.SET_NULL,null=True, related_name='order')
+    owner = models.ForeignKey(Customer, on_delete=models.SET_NULL,null=True, related_name='order')
     delete_status = models.IntegerField(choices=DELETE_CHOICE,default=LIVE)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now=True)
