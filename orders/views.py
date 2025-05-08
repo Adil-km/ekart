@@ -3,7 +3,35 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from . models import Order, OrderedItem
 from products.models import Product
+from django.contrib import messages
 # Create your views here.
+
+def checkout_cart(request):
+    if request.POST:
+        try:
+            user = request.user
+            customer=user.customer_profile
+            total = float(request.POST.get('total'))
+            order_obj = Order.objects.get(
+                owner = customer,
+                order_status=Order.CART_STAGE
+
+            )
+            if order_obj:
+                order_obj.order_status=Order.ORDER_CONFIRMED
+                order_obj.total_price = total
+                order_obj.save()
+                status_message = "Your order is processed. Your item will me delivered with in 2 days."
+                messages.success(request, status_message)
+            else:
+                status_message = "Unable to process. No item in the cart."
+                messages.error(request, status_message)
+        except Exception as e:
+            status_message = "Unable to process. Error occured."
+            messages.error(request, e)
+            print(e)
+    return redirect('cart')
+
 
 def show_cart(request):
     user = request.user
@@ -20,7 +48,7 @@ def add_to_cart(request):
         user = request.user
         customer=user.customer_profile
         quantity = int(request.POST.get('quantity'))
-        product_id=int(request.POST.get('product_id'))
+        product_id=request.POST.get('product_id')
         cart_obj,created = Order.objects.get_or_create(
             owner = customer,
             order_status=Order.CART_STAGE
@@ -39,3 +67,11 @@ def add_to_cart(request):
             ordered_item.quantity = ordered_item.quantity + quantity
             ordered_item.save()
         return redirect('cart')
+    
+
+def remove_item(request,pk):
+    item = OrderedItem.objects.get(pk=pk)
+
+    if item:
+        item.delete()
+    return redirect('cart')

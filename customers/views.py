@@ -27,6 +27,7 @@ def show_account(request):
                 email=email
                 )
             customer = Customer.objects.create(
+                name=username,
                 user= user,
                 address=address,
                 phone=phone

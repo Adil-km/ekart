@@ -17,10 +17,15 @@ class Order(models.Model):
                      (ORDER_DELIVERED, "ORDER_DELIVERED"),
                      (ORDER_REJECTED, "ORDER_REJECTED"),)
     order_status = models.IntegerField(choices=STATUS_CHOICE, default=CART_STAGE)
+    total_price = models.FloatField(default=0)
     owner = models.ForeignKey(Customer, on_delete=models.SET_NULL,null=True, related_name='order')
     delete_status = models.IntegerField(choices=DELETE_CHOICE,default=LIVE)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        owner_name = self.owner.name if self.owner else "NoOwner"
+        return "order-{}-{}".format(self.id, owner_name)
 
 class OrderedItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, related_name='added_cart')
