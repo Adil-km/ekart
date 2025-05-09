@@ -1,0 +1,20 @@
+{% extends 'blank_layout.html'%}
+
+
+{% block content %}
+
+{% if messages %}
+
+    {% for message in messages %}
+        <div style="width: 98vw ;margin: 10px;" class="{{ message.tags }}">
+            <li>{{message}}</li>
+        </div>
+    {% endfor %}
+
+{% else %}
+
+{% include 'order_container.html' %}
+
+{% endif %}
+
+{% endblock content %}
